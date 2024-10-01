@@ -13,6 +13,15 @@ namespace EmployeeAccess.Controllers
     public class AuthController : ControllerBase
     {
         public string msg = "";
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        /// Authenticates a user with the provided credentials.
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
         [Route("api/[controller]/Login")]
         [HttpPost]
         public IActionResult Login([FromBody] UserDetails userDetails)
@@ -63,6 +72,15 @@ namespace EmployeeAccess.Controllers
 
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        /// Initiates forgot password process for a user.
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
+
         [Route("api/[controller]/forgot-password")]
         [HttpPost]
         public IActionResult ForgotPassword([FromBody] UserDetails userDetails)
@@ -105,6 +123,14 @@ namespace EmployeeAccess.Controllers
             return Ok(msg);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        /// Initiates the password reset process for a user.
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
         [Route("api/[controller]/resetpassword")]
         [HttpPost]
         public IActionResult ResetPassword([FromBody]ResetPassword ResetPassword)

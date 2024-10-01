@@ -17,6 +17,16 @@ namespace EmployeeAccess.Controllers
     {
         public string message = "";
         public string ConnectionString = "";
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        ///Create a new user with user details.
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
+
         [HttpPost]
         public IActionResult CreateUser([FromBody] UserDetails userDetails)
         {
@@ -64,6 +74,16 @@ namespace EmployeeAccess.Controllers
             return Ok(message);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        ///Lists all the user details
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
+
         [HttpGet]
         public IActionResult GetUsers()
         {
@@ -93,6 +113,15 @@ namespace EmployeeAccess.Controllers
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        ///Lists the user details based on the id
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
 
         [HttpGet("{Id}")]
         public IActionResult GetUserDetailsById(int Id)
@@ -136,6 +165,16 @@ namespace EmployeeAccess.Controllers
 
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        ///Updates the user details  by id
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
+
         [HttpPut("{Id}")]
         public IActionResult UpdateUserDetailsById(int Id, [FromBody] UserDetails userDetails)
         {
@@ -176,6 +215,16 @@ namespace EmployeeAccess.Controllers
 
         }
 
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        ///Delete the user details by id
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
         [HttpDelete("{Id}")]
         public IActionResult DeleteUserDetailsById(int Id)
         {
@@ -211,8 +260,17 @@ namespace EmployeeAccess.Controllers
             }
         }
 
-        [Route("api/[controller]/enabledisable-status")]
-        [HttpPost]
+        /// <summary>
+        ///
+        /// </summary>
+        /// <remarks>
+        /// List of users are enabled/ disabled based on the Active Status.
+        ///     
+        /// </remarks>
+        /// <param name="UserDetails"></param>
+        /// <returns></returns>
+        
+        [HttpPost("enabledisable-status")]
         public IActionResult EnableDisableActiveStatus(UserDetailsActive userDetailsActive)
         {
             message=UserDetailsBL.EnableDisableActiveStatus(userDetailsActive);

@@ -129,7 +129,7 @@
   {
     "ContainingType": "EmployeeAccess.Controllers.UsersController",
     "Method": "EnableDisableActiveStatus",
-    "RelativePath": "api/Users/api/Users/enabledisable-status",
+    "RelativePath": "api/Users/enabledisable-status",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

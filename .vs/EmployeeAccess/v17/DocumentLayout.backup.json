@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Git\\SampleProject\\SampleGitSourceCode\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|d:\\git\\sampleproject\\samplegitsourcecode\\employeeaccess.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|solutionrelative:employeeaccess.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|d:\\git\\sampleproject\\samplegitsourcecode\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|d:\\git\\sampleproject\\samplegitsourcecode\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|solutionrelative:startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|d:\\git\\sampleproject\\samplegitsourcecode\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|d:\\git\\sampleproject\\samplegitsourcecode\\controllers\\copydatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FAD1A7-4BED-49F9-8DC2-FF1346455636}|EmployeeAccess.csproj|solutionrelative:controllers\\copydatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeAccess",
+              "DocumentMoniker": "D:\\Git\\SampleProject\\SampleGitSourceCode\\EmployeeAccess.csproj",
+              "RelativeDocumentMoniker": "EmployeeAccess.csproj",
+              "ToolTip": "D:\\Git\\SampleProject\\SampleGitSourceCode\\EmployeeAccess.csproj",
+              "RelativeToolTip": "EmployeeAccess.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-30T10:38:07.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwv1EAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T10:37:56.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CopyDataController.cs",
+              "DocumentMoniker": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Controllers\\CopyDataController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CopyDataController.cs",
+              "ToolTip": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Controllers\\CopyDataController.cs",
+              "RelativeToolTip": "Controllers\\CopyDataController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T10:37:30.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAADwv28AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T10:36:29.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Startup.cs",
+              "RelativeDocumentMoniker": "Startup.cs",
+              "ToolTip": "D:\\Git\\SampleProject\\SampleGitSourceCode\\Startup.cs",
+              "RelativeToolTip": "Startup.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAxwI4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T10:35:41.372Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
