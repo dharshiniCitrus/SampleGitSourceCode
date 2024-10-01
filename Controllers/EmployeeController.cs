@@ -8,11 +8,12 @@ using System.Data.SqlClient;
 using System.Xml.Linq;
 using EmployeeAccess.BL;
 using EmployeeAccess.Model;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace EmployeeAccess.Controllers
 {
-
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class EmployeeController : ControllerBase

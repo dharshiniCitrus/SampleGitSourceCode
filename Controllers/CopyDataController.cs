@@ -1,12 +1,14 @@
 ﻿using EmployeeAccess.BL;
 using EmployeeAccess.DA;
 using EmployeeAccess.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace EmployeeAccess.Controllers
 {
+    [Authorize]
     [ApiController]
     [Microsoft.AspNetCore.Mvc.Route("[controller]")]
     public class CopyDataController : ControllerBase
