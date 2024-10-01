@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Xml;
 using EmployeeAccess.Model;
+using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -104,11 +105,53 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         }
     }
 
+        // Ensure options.Events are set even if there are no exceptions
+        if (options.Events == null)
+        {
+            options.Events = new JwtBearerEvents
+            {
+                OnChallenge = async context =>
+                {
+                    EmployeeAccess.Model.ValidationSummary validationSummary = new EmployeeAccess.Model.ValidationSummary { IsValid = true, Messages = new List<ValidationMessage>() };
+                    validationSummary.Messages.Add(new EmployeeAccess.Model.ValidationMessage { Type = EmployeeAccess.Model.ValidationType.INVALID, Message = "Unauthorized API access" });
+
+                    var result = new
+                    {
+                        // Result = HttpResult.INVALID,
+                        Messages = validationSummary.Messages
+                    };
+
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                    context.HandleResponse();
+                },
+                OnForbidden = async context =>
+                {
+                    EmployeeAccess.Model.ValidationSummary validationSummary = new EmployeeAccess.Model.ValidationSummary { IsValid = true, Messages = new List<ValidationMessage>() };
+                    validationSummary.Messages.Add(new EmployeeAccess.Model.ValidationMessage { Type = EmployeeAccess.Model.ValidationType.INVALID, Message = "Forbidden API access" });
+
+                    var result = new
+                    {
+                        //Result = HttpResult.INVALID,
+                        Messages = validationSummary.Messages
+                    };
+
+                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                }
+            };
+        }
+
     });
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+                       $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Employee Access", Version = "v1" });
 
     // Configure JWT authentication in Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -144,12 +187,14 @@ var app = builder.Build();
 
 // Set SQL connection configuration
 ConfigurationManager configuration = builder.Configuration;
-builder.Configuration.AddJsonFile($"appsettings.Development.json");
-// Configure the HTTP request pipeline.
 
-//Console.WriteLine("MY ENV: " + builder.Configuration.GetConnectionString("myenv"));
-//Console.WriteLine("BE_URL: " + builder.Configuration.GetConnectionString("BE_URL"));
 
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+// Print the environment name (for debugging purposes)
+Console.WriteLine($"Environment: {environment}");
+
+builder.Configuration.AddJsonFile($"appsettings.{environment}.json");
 
 if (app.Environment.IsDevelopment())
 {

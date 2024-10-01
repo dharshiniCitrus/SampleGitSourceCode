@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 
@@ -107,38 +108,54 @@ namespace EmployeeAccess
                             };
                         }
                     }
-                    //options.TokenValidationParameters = new TokenValidationParameters
-                    //{
-                    //    ValidateIssuer = true,
-                    //    ValidateAudience = true,
-                    //    ValidateLifetime = true,
-                    //    ValidateIssuerSigningKey = true,
-                    //    ValidIssuer = configuration["Jwt:Issuer"],
-                    //    ValidAudience = configuration["Jwt:Audience"],
-                    //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
-                    //};
-                    //options.Events = new JwtBearerEvents
-                    //{
-                    //    OnAuthenticationFailed = context =>
-                    //    {
-                    //        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    //        context.Response.ContentType = "application/json";
-                    //        var result = JsonSerializer.Serialize(new { message = "Invalid Token" });
-                    //        return context.Response.WriteAsync(result);
-                    //    },
-                    //    OnChallenge = context =>
-                    //    {
-                    //        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    //        context.Response.ContentType = "application/json";
-                    //        var result = JsonSerializer.Serialize(new { message = "Token is missing or invalid" });
-                    //        return context.Response.WriteAsync(result);
-                    //    }
-                    //};
+
+                    // Ensure options.Events are set even if there are no exceptions
+                    if (options.Events == null)
+                    {
+                        options.Events = new JwtBearerEvents
+                        {
+                            OnChallenge = async context =>
+                            {
+                                EmployeeAccess.Model.ValidationSummary validationSummary = new EmployeeAccess.Model.ValidationSummary { IsValid = true, Messages = new List<ValidationMessage>() };
+                                validationSummary.Messages.Add(new EmployeeAccess.Model.ValidationMessage { Type = EmployeeAccess.Model.ValidationType.INVALID, Message = "Unauthorized API access" });
+
+                                var result = new
+                                {
+                                    // Result = HttpResult.INVALID,
+                                    Messages = validationSummary.Messages
+                                };
+
+                                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                                context.Response.ContentType = "application/json";
+                                await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                                context.HandleResponse();
+                            },
+                            OnForbidden = async context =>
+                            {
+                                EmployeeAccess.Model.ValidationSummary validationSummary = new EmployeeAccess.Model.ValidationSummary { IsValid = true, Messages = new List<ValidationMessage>() };
+                                validationSummary.Messages.Add(new EmployeeAccess.Model.ValidationMessage { Type = EmployeeAccess.Model.ValidationType.INVALID, Message = "Forbidden API access" });
+
+                                var result = new
+                                {
+                                    //Result = HttpResult.INVALID,
+                                    Messages = validationSummary.Messages
+                                };
+
+                                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                                context.Response.ContentType = "application/json";
+                                await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                            }
+                        };
+                    }
+                   
                 });
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+                      $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Employee Access", Version = "v1" });
 
                 // Configure JWT authentication in Swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

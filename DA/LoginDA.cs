@@ -18,13 +18,15 @@ namespace EmployeeAccess.DA
     {
         public static string message = "";
         public static string ConnectionString = "Data Source = PRIYADHARSHINI\\SQLEXPRESS; Initial Catalog = Employee; User ID = PRIYADHARSHINI\\Priyadharshini J;Trusted_Connection=True;";
-        IConfiguration configuration;
-        //Create User Login Details
+       
+
+
         public static string LoginDetails(UserDetails login)
         {
             try
             {
                
+
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetLoginUserDetails", con);
