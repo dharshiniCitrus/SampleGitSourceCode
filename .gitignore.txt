@@ -1,4 +1,0 @@
-# IDE files
-.vscode/
-bin/
-obj/
