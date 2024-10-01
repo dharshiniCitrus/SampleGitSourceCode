@@ -1,4 +1,4 @@
 # IDE files
 .vscode/
-.dll/
-.obj/
+bin/
+obj/
