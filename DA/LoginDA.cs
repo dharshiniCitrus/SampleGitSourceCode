@@ -17,16 +17,13 @@ namespace EmployeeAccess.DA
     public class LoginDA
     {
         public static string message = "";
-        public static string ConnectionString = "Data Source = PRIYADHARSHINI\\SQLEXPRESS; Initial Catalog = Employee; User ID = PRIYADHARSHINI\\Priyadharshini J;Trusted_Connection=True;";
-       
-
-
+        public static string ConnectionString = "";
+ 
         public static string LoginDetails(UserDetails login)
         {
             try
             {
-               
-
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetLoginUserDetails", con);
@@ -84,6 +81,18 @@ namespace EmployeeAccess.DA
 
             return message;
         }
+
+        public static string GetConnectionString()
+        {
+            var builder = WebApplication.CreateBuilder();
+
+
+            ConfigurationManager configuration = builder.Configuration;
+            builder.Configuration.AddJsonFile($"appsettings.Development.json");
+            ConnectionString = builder.Configuration.GetConnectionString("DataBaseConnectionString1");
+            return ConnectionString;
+        }
+
         public static string GenerateJSONWebToken(string userId, string email)
         {
             // Create claims
@@ -126,6 +135,7 @@ namespace EmployeeAccess.DA
         {
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetLoginDetailsExists", con);
@@ -162,6 +172,7 @@ namespace EmployeeAccess.DA
         {
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetUserDetailsByEmail", con);
@@ -228,6 +239,7 @@ namespace EmployeeAccess.DA
         {
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("UpdateRestTokenbyEmail", con);
@@ -298,6 +310,7 @@ namespace EmployeeAccess.DA
         {
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetUserDetailsByresettoken", con);
@@ -337,6 +350,7 @@ namespace EmployeeAccess.DA
         {
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("UpdatePasswordByresettoken", con);

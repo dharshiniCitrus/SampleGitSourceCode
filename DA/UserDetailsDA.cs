@@ -8,7 +8,7 @@ namespace EmployeeAccess.DA
 {
     public class UserDetailsDA
     {
-        public static string ConnectionString = "Data Source = PRIYADHARSHINI\\SQLEXPRESS; Initial Catalog = Employee; User ID = PRIYADHARSHINI\\Priyadharshini J;Trusted_Connection=True;";
+        public static string ConnectionString = "";
         public static string msg = "";
 
         //Save User Details in the Table
@@ -16,8 +16,8 @@ namespace EmployeeAccess.DA
         {
             try
             {
-               
 
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SaveUserDetails", con);
@@ -69,12 +69,24 @@ namespace EmployeeAccess.DA
             return msg;
         }
 
+        public static string GetConnectionString()
+        {
+            var builder = WebApplication.CreateBuilder();
+
+
+            ConfigurationManager configuration = builder.Configuration;
+            builder.Configuration.AddJsonFile($"appsettings.Development.json");
+            ConnectionString = builder.Configuration.GetConnectionString("DataBaseConnectionString1");
+            return ConnectionString;
+        }
+
         //Check if Email Already exists
         public static bool GetUserDetails(string? email)
         {
 
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetUserDetailsByEmail", con);
@@ -113,6 +125,7 @@ namespace EmployeeAccess.DA
             var user = new UserDetails();
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("GetUserDetailsByID", con);
@@ -163,6 +176,7 @@ namespace EmployeeAccess.DA
             var user = new List<UserDetails>();
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT id,firstName,LastName,email,password,isActive,createdOn,updatedOn from UserDetails", con);
@@ -201,6 +215,7 @@ namespace EmployeeAccess.DA
            
             try
             {
+                ConnectionString = GetConnectionString();
                 var user = new UserDetails();
                 user = UserDetailsDA.ListById(id);
 
@@ -270,7 +285,7 @@ namespace EmployeeAccess.DA
         {
             try
             {
-
+                ConnectionString = GetConnectionString();
                 var user = new UserDetails();
                 user = UserDetailsDA.ListById(id);
 
@@ -308,6 +323,7 @@ namespace EmployeeAccess.DA
         {
            try
             {
+                ConnectionString = GetConnectionString();
                 bool IsUpdate=false;
                 string UserActiveStatus = "false";
                 if (userDetailsActive.isActive == true)
@@ -355,6 +371,7 @@ namespace EmployeeAccess.DA
             bool isUpdate = false;
             try
             {
+                ConnectionString = GetConnectionString();
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("UpdateUserDetails", con);

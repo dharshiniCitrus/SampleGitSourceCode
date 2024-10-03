@@ -138,7 +138,7 @@ namespace EmployeeAccess.Controllers
                     {
                         Status = 200,
                         Success = message,
-                        data =userDetails
+                        data = new { id = userDetails.Id, firstname = userDetails.firstName, lastname = userDetails.lastName, email = userDetails.email, isActive = userDetails.isActive, createdOn = userDetails.createdOn, updateOn = userDetails.updatedOn }
                     };
                     return Ok(response1);
                 }
